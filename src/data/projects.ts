@@ -9,39 +9,57 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: "Project Alpha",
+    title: "Vietnamese Lunar New Year",
     description:
-      "A full-stack web application for managing tasks and team collaboration. Features real-time updates and an intuitive dashboard.",
-    image: "/projects/placeholder-1.svg",
-    tags: ["React", "Node.js", "PostgreSQL"],
-    githubUrl: "https://github.com/HGTNewCoder",
+      "A week-long Tet celebration featuring a Vietnamese Calligraphy workshop I introduced to the school, which drew participation from about 80% of students and teachers.",
+    image: "/projects/vietnamese_lunar_new_year.png",
+    tags: ["Non-Technical"],
+    githubUrl: null,
+    liveUrl: "https://drive.google.com/drive/u/0/folders/1uh1aBXc25kzYCoHGv3LCatIRniBQ5Del",
+  },
+  {
+    title: "Live Healthy",
+    description:
+      "A minimal Flask web application designed for looking up local health and nutrition information based on the user's location.",
+    image: "/projects/live_healthy.png",
+    tags: ["LLMs", "HTML", "CSS", "JavaScript"],
+    githubUrl: "https://github.com/HGTNewCoder/LiveHealthy",
+    liveUrl: "https://nutrition-llms.onrender.com/",
+  },
+  {
+    title: "Deforestation Detection",
+    description:
+      "A computer vision project that detects deforestation in satellite imagery using the U-Net model.",
+    image: "/projects/deforestation_detection.png",
+    tags: ["Computer Vision", "Segmentation", "Satellite Imagery Analysis"],
+    githubUrl: "https://github.com/HGTNewCoder/deforest_detection",
     liveUrl: null,
   },
   {
-    title: "Project Beta",
+    title: "Metadata Extraction System for Research Papers",
     description:
-      "An API service that processes and analyzes data streams. Built for reliability with automated testing and CI/CD.",
-    image: "/projects/placeholder-2.svg",
-    tags: ["Python", "FastAPI", "Docker"],
-    githubUrl: "https://github.com/HGTNewCoder",
+      "A Python script designed for bibliography extraction from research papers.",
+    image: "/projects/grobid2.png",
+    tags: ["Machine Learning", "NLP", "Bibliography Extraction"],
+    githubUrl: "https://github.com/HGTNewCoder/grobid2",
     liveUrl: null,
   },
   {
-    title: "Project Gamma",
+    title: "OmniVox",
     description:
-      "A responsive portfolio and content site with optimized performance and accessible design patterns.",
-    image: "/projects/placeholder-3.svg",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
-    githubUrl: "https://github.com/HGTNewCoder",
+      "An assistive communication software platform developed in Python for Raspberry Pi 4 and 5 device.",
+    image: "/projects/omnivox.png",
+    tags: ["Python", "Raspberry Pi", "Assistive Technology"],
+    githubUrl: "https://github.com/HGTNewCoder/OmniVox",
     liveUrl: null,
   },
   {
-    title: "Project Delta",
+    title: "Prom Proposal",
     description:
-      "A mobile-friendly tool for tracking personal goals and habits, with data visualization and export features.",
-    image: "/projects/placeholder-4.svg",
-    tags: ["React", "Chart.js", "Firebase"],
-    githubUrl: "https://github.com/HGTNewCoder",
-    liveUrl: null,
+      "A simple, static single-page website hosted on GitHub Pages, created as a digital prom proposal for the 2026 Prom at my high school.",
+    image: "/projects/prom_proposal.png",
+    tags: ["HTML", "CSS", "JavaScript"],
+    githubUrl: "https://github.com/HGTNewCoder/PromProposalProject",
+    liveUrl: "https://hgtnewcoder.github.io/PromProposalProject/",
   },
 ];

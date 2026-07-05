@@ -22,8 +22,10 @@ Update your personal info, bio, work experience, skills, and contact links:
 - `name`, `title`, `tagline` — shown in the hero section
 - `about` — bio paragraph
 - `experience[]` — company, role, period, and bullet highlights
-- `skills` — grouped by languages, frameworks, and tools
+- `skills` — grouped by category (e.g. Software Engineer & Web Development, Data Science & AI) with labeled subgroups
 - `contact` — email, LinkedIn, and GitHub URLs
+
+
 
 ### Projects (`src/data/projects.ts`)
 
@@ -40,6 +42,8 @@ Add or edit project entries:
 }
 ```
 
+
+
 ### Project Photos
 
 1. Add your screenshots to `public/projects/`
@@ -55,7 +59,11 @@ Placeholder SVGs are included (`placeholder-1.svg` through `placeholder-4.svg`).
 - **Framer Motion** — scroll reveals, stagger, hover effects
 - **Lucide React** — icons
 
+
+
 ## Deploy
+
+
 
 ### Vercel (recommended)
 
@@ -63,9 +71,11 @@ Placeholder SVGs are included (`placeholder-1.svg` through `placeholder-4.svg`).
 2. Import the project at [vercel.com](https://vercel.com)
 3. Deploy — no extra configuration needed
 
+
+
 ### GitHub Pages (static export)
 
-Add `output: "export"` to `next.config.ts`, then build and deploy the `out/` folder.
+Add `output: "export"` cto `next.config.ts`, then build and deploy the `out/` folder.
 
 ## Project Structure
 
@@ -82,7 +92,10 @@ public/
 └── projects/         # Project images
 ```
 
+
+
 ## Scripts
+
 
 | Command         | Description              |
 | --------------- | ------------------------ |
@@ -90,3 +103,5 @@ public/
 | `npm run build` | Production build         |
 | `npm run start` | Serve production build   |
 | `npm run lint`  | Run ESLint               |
+
+

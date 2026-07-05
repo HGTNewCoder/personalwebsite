@@ -5,10 +5,18 @@ export interface Experience {
   highlights: string[];
 }
 
+export interface SkillGroup {
+  label: string;
+  items: string[];
+}
+
+export interface SkillCategory {
+  title: string;
+  groups: SkillGroup[];
+}
+
 export interface Skills {
-  languages: string[];
-  frameworks: string[];
-  tools: string[];
+  categories: SkillCategory[];
 }
 
 export interface Contact {
@@ -28,41 +36,82 @@ export interface Resume {
 }
 
 export const resume: Resume = {
-  name: "Your Name",
-  title: "Software Developer",
-  tagline: "Building thoughtful software with clean code and clear design.",
+  name: "Thinh Gia Ha",
+  title: "AI Engineer",
+  tagline: "Building thoughtful AI solutions with clean code and clear design.",
   about:
-    "I'm a software developer passionate about creating useful, well-crafted applications. I enjoy working across the stack — from designing intuitive interfaces to building reliable backends. I'm always learning and looking for opportunities to solve meaningful problems.",
+    "I'm an AI engineer passionate about creating useful, well-crafted AI solutions. I enjoy working across the stack — from designing intuitive interfaces to building reliable backends. I'm always learning and looking for opportunities to solve meaningful problems.",
   experience: [
     {
-      company: "Company Name",
-      role: "Software Developer",
-      period: "2023 — Present",
+      company: "Beaver Works Summer Institute @ MIT",
+      role: "Leader, OmniVox Project for CRE[AT]E Challenge",
+      period: "Oct 2025 — Apr 2026",
       highlights: [
-        "Built and maintained web applications serving thousands of users.",
-        "Collaborated with cross-functional teams to deliver features on schedule.",
-        "Improved application performance and code quality through refactoring.",
+        "Built an Augmentative and Alternative Communication device for a patient with speech impairment.",
+        "Developed the backend using the PyQt6 framework on a Raspberry Pi 5.",
+        "Secured a $500 project grant from school administration.",
       ],
     },
     {
-      company: "Previous Company",
-      role: "Junior Developer",
-      period: "2021 — 2023",
+      company: "Beaver Works Summer Institute @ MIT",
+      role: "Student, Remote Sensing for Disaster Response",
+      period: "Jul 2025 — Aug 2025",
       highlights: [
-        "Developed new features for the company's main product.",
-        "Participated in code reviews and agile development processes.",
-        "Contributed to documentation and onboarding materials.",
+        "Visualized hurricane path data with Pandas and Matplotlib, and optimized evacuation routes with Dijkstra's algorithm.",
+        "Applied U-Net and DeepLabV3 for semantic segmentation to detect illegal logging in Sentinel-1 SAR imagery of Kalimantan, Indonesia.",
+        "Model achieved 0.82 accuracy and 0.69 precision; results published in the International Journal of Advanced Research (IJAC).",
       ],
     },
   ],
   skills: {
-    languages: ["TypeScript", "JavaScript", "Python", "SQL"],
-    frameworks: ["React", "Next.js", "Node.js", "Tailwind CSS"],
-    tools: ["Git", "Docker", "VS Code", "Figma"],
+    categories: [
+      {
+        title: "Software Engineer & Cloud Engineer",
+        groups: [
+          {
+            label: "Programming Languages",
+            items: ["C++", "Python", "Java"],
+          },
+          {
+            label: "Cloud Computing",
+            items: ["Google Cloud Platform (Vertex AI and Compute Engine), Microsoft Azure (Foundry)"],
+          },
+        ],
+      },
+      {
+        title: "Data Science & AI",
+        groups: [
+          {
+            label: "Libraries",
+            items: [
+              "Scikit-Learn",
+              "NumPy",
+              "Pandas",
+              "PyTorch",
+              "NLTK",
+              "Hugging Face Transformers",
+              "OpenCV",
+              "Seaborn",
+              "LangChain",
+            ],
+          },
+          {
+            label: "Mathematics Foundation",
+            items: [
+              "Linear Algebra",
+              "Statistics",
+              "Multivariable Calculus",
+              "Convex Optimization",
+              "Graph Theory",
+            ],
+          },
+        ],
+      },
+    ],
   },
   contact: {
-    email: "you@example.com",
-    linkedin: "https://linkedin.com/in/yourprofile",
+    email: "tgh26@fsu.edu",
+    linkedin: "https://linkedin.com/in/hgtnewcoder",
     github: "https://github.com/HGTNewCoder",
   },
 };
