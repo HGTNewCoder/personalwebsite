@@ -6,21 +6,19 @@ import { navLinks, resume } from "@/data/resume";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
+  const [activeSection, setActiveSection] = useState("hero");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const onHero = activeSection === "hero";
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 80);
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    const sectionIds = navLinks.map((link) => link.href.slice(1));
+    const sectionIds = ["hero", ...navLinks.map((link) => link.href.slice(1))];
     const observers: IntersectionObserver[] = [];
 
     sectionIds.forEach((id) => {
@@ -29,11 +27,9 @@ export function Navbar() {
 
       const observer = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) {
-            setActiveSection(id);
-          }
+          if (entry.isIntersecting) setActiveSection(id);
         },
-        { rootMargin: "-40% 0px -50% 0px", threshold: 0 }
+        { rootMargin: "-35% 0px -50% 0px", threshold: 0 }
       );
 
       observer.observe(element);
@@ -43,79 +39,110 @@ export function Navbar() {
     return () => observers.forEach((observer) => observer.disconnect());
   }, []);
 
-  const handleNavClick = (href: string) => {
-    setMobileOpen(false);
-    const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: "smooth" });
-  };
+  const lightNav = onHero && !scrolled && !mobileOpen;
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-border bg-background/80 backdrop-blur-md"
-          : "bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        scrolled || mobileOpen
+          ? "border-b border-border bg-background/90 backdrop-blur-md"
+          : "on-dark bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <button
-          onClick={() => handleNavClick("#hero")}
-          className="text-sm font-semibold tracking-tight text-foreground transition-colors hover:text-accent"
+      <nav
+        aria-label="Primary"
+        className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:px-10"
+      >
+        <a
+          href="#hero"
+          className={`font-mono-label transition-colors ${
+            lightNav ? "text-white hover:text-white/70" : "text-foreground hover:text-muted"
+          }`}
         >
-          {resume.name.split(" ")[0]}
-        </button>
+          {resume.name}
+        </a>
 
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-8 lg:flex">
           {navLinks.map((link) => {
-            const id = link.href.slice(1);
-            const isActive = activeSection === id;
+            const isActive = activeSection === link.href.slice(1);
             return (
               <li key={link.href}>
-                <button
-                  onClick={() => handleNavClick(link.href)}
-                  className={`text-sm transition-colors ${
-                    isActive
-                      ? "font-medium text-accent"
-                      : "text-muted hover:text-foreground"
+                <a
+                  href={link.href}
+                  aria-current={isActive ? "true" : undefined}
+                  className={`font-mono-label transition-colors ${
+                    lightNav
+                      ? isActive
+                        ? "text-white"
+                        : "text-white/70 hover:text-white"
+                      : isActive
+                        ? "text-foreground"
+                        : "text-muted hover:text-foreground"
                   }`}
                 >
                   {link.label}
-                </button>
+                </a>
               </li>
             );
           })}
         </ul>
 
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="text-foreground md:hidden"
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-        >
-          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="flex items-center gap-4">
+          <a
+            href="#contact"
+            className={`hidden rounded-full px-5 py-2.5 font-mono-label transition-all md:inline-flex ${
+              lightNav
+                ? "bg-white text-surface-dark hover:bg-white/90"
+                : "bg-surface-dark text-white hover:bg-foreground/85"
+            }`}
+          >
+            Get in Touch
+          </a>
+
+          <button
+            type="button"
+            onClick={() => setMobileOpen((open) => !open)}
+            className={`font-mono-label lg:hidden ${
+              lightNav ? "text-white" : "text-foreground"
+            }`}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileOpen ? <X size={18} aria-hidden /> : <Menu size={18} aria-hidden />}
+          </button>
+        </div>
       </nav>
 
       {mobileOpen && (
-        <div className="border-b border-border bg-background/95 backdrop-blur-md md:hidden">
-          <ul className="flex flex-col gap-1 px-6 py-4">
+        <div id="mobile-menu" className="border-t border-border bg-background lg:hidden">
+          <ul className="flex flex-col gap-1 px-6 py-6 md:px-10">
             {navLinks.map((link) => {
-              const id = link.href.slice(1);
-              const isActive = activeSection === id;
+              const isActive = activeSection === link.href.slice(1);
               return (
                 <li key={link.href}>
-                  <button
-                    onClick={() => handleNavClick(link.href)}
-                    className={`block w-full py-2 text-left text-sm transition-colors ${
-                      isActive
-                        ? "font-medium text-accent"
-                        : "text-muted hover:text-foreground"
+                  <a
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    aria-current={isActive ? "true" : undefined}
+                    className={`block w-full py-3 font-mono-label transition-colors ${
+                      isActive ? "text-foreground" : "text-muted hover:text-foreground"
                     }`}
                   >
                     {link.label}
-                  </button>
+                  </a>
                 </li>
               );
             })}
+            <li className="pt-4">
+              <a
+                href="#contact"
+                onClick={() => setMobileOpen(false)}
+                className="inline-flex rounded-full bg-surface-dark px-5 py-2.5 font-mono-label text-white"
+              >
+                Get in Touch
+              </a>
+            </li>
           </ul>
         </div>
       )}
