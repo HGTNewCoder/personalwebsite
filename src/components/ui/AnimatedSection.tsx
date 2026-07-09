@@ -1,12 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ReactNode } from "react";
-import {
-  defaultTransition,
-  fadeUp,
-  viewportOnce,
-} from "@/lib/motion";
+import { defaultTransition, fadeUp, viewportOnce } from "@/lib/motion";
 
 interface AnimatedSectionProps {
   children: ReactNode;
@@ -19,12 +15,6 @@ export function AnimatedSection({
   className = "",
   delay = 0,
 }: AnimatedSectionProps) {
-  const shouldReduceMotion = useReducedMotion();
-
-  if (shouldReduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
   return (
     <motion.div
       className={className}
