@@ -9,6 +9,15 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "Minecraft Server Agent",
+    description:
+      "An AI-powered Minecraft server manager that turns natural-language requests into orchestrated plugin installs, verification, and rollbacks — currently a live preview of the product I'm building.",
+    image: "/projects/minecraft_server_agent.png",
+    tags: ["AI Agents", "Python", "TypeScript", "FastAPI"],
+    githubUrl: "https://github.com/HGTNewCoder/MCAgent",
+    liveUrl: "https://mc-agent-ecru.vercel.app/",
+  },
+  {
     title: "Vietnamese Lunar New Year",
     description:
       "A week-long Tet celebration featuring a Vietnamese Calligraphy workshop I introduced to the school, which drew participation from about 80% of students and teachers.",
