@@ -67,8 +67,8 @@ Purpose: Help Copilot agents and future sessions understand how this repo is bui
 
 If you add automated tests or CI workflows, update this file with:
 - test command and an example of running a single test (e.g., `npm test -- <testNamePattern>`)
-- any headless browser runners (Playwright) and the commands to run them in CI
+- any headless browser runners and the commands to run them in CI
 
 ---
 
-Created by Copilot CLI — ask if you want this expanded to include CI, tests, or Playwright configuration.
+Created by Copilot CLI — ask if you want this expanded to include CI or tests.
