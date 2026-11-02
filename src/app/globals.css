@@ -1,13 +1,15 @@
 @import "tailwindcss";
 
+/* Ink on paper: warm paper ground, ink-black text, one seal-red accent. */
 :root {
-  --background: #f8f8f8;
-  --foreground: #080808;
-  --muted: #5c5c5c;
-  --muted-light: #737373;
-  --border: #e0e0e0;
-  --surface: #ffffff;
-  --surface-dark: #080808;
+  --background: #f3eee4;
+  --foreground: #0b0b0b;
+  --muted: #57534d;
+  --muted-light: #6b6660;
+  --border: #ddd5c7;
+  --surface: #faf7f0;
+  --surface-dark: #0b0b0b;
+  --seal: #b3261e;
 }
 
 @theme inline {
@@ -18,6 +20,7 @@
   --color-border: var(--border);
   --color-surface: var(--surface);
   --color-surface-dark: var(--surface-dark);
+  --color-seal: var(--seal);
   --font-sans: var(--font-display);
   --font-mono: var(--font-mono);
 }
@@ -38,8 +41,20 @@ body {
   font-family: var(--font-display), system-ui, sans-serif;
 }
 
+/* Subtle paper grain over the whole page */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 ::selection {
-  background-color: color-mix(in srgb, var(--foreground) 12%, transparent);
+  background-color: color-mix(in srgb, var(--seal) 22%, transparent);
 }
 
 :focus-visible {

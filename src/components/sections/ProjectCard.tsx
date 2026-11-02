@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Code2, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import { InkReveal } from "@/components/ui/InkReveal";
 import { Project } from "@/data/projects";
 import { defaultTransition, fadeUp } from "@/lib/motion";
 
@@ -22,7 +23,11 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       transition={defaultTransition}
       className="group flex flex-col"
     >
-      <div className="on-dark relative aspect-square overflow-hidden bg-surface-dark">
+      <InkReveal
+        delay={index * 0.15}
+        origin={index % 2 === 0 ? "25% 75%" : "75% 30%"}
+        className="on-dark relative aspect-square overflow-hidden bg-surface-dark"
+      >
         {imgError ? (
           <div className="flex h-full w-full flex-col justify-between p-6 text-white/70">
             <span className="font-mono-label text-white/40">{number}</span>
@@ -36,11 +41,11 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             alt={project.title}
             fill
             onError={() => setImgError(true)}
-            className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+            className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.05]"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 640px"
           />
         )}
-      </div>
+      </InkReveal>
       <div className="flex flex-1 flex-col border-b border-border bg-surface px-5 py-6">
         <p className="mb-2 font-mono-label text-muted-light">{number}</p>
         <h3 className="mb-3 text-lg font-semibold tracking-tight text-foreground md:text-xl">

@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { BrushStroke } from "@/components/ui/BrushStroke";
+import { InkText } from "@/components/ui/InkText";
 
 interface SectionProps {
   id: string;
@@ -38,16 +40,25 @@ export function Section({
           >
             {label}
           </p>
-          {title && (
+        </AnimatedSection>
+        {title && (
+          <>
             <h2
-              className={`mb-16 max-w-4xl text-3xl font-semibold leading-[1.05] tracking-[-0.02em] md:text-4xl lg:text-5xl xl:text-6xl ${
+              className={`mb-6 max-w-4xl text-3xl font-semibold leading-[1.05] tracking-[-0.02em] md:text-4xl lg:text-5xl xl:text-6xl ${
                 dark ? "text-white" : "text-foreground"
               }`}
             >
-              {title}
+              <InkText text={title} delay={0.1} />
             </h2>
-          )}
-        </AnimatedSection>
+            <BrushStroke
+              delay={0.55}
+              duration={0.9}
+              className={`mb-16 h-3 w-32 md:h-4 md:w-44 ${
+                dark ? "text-white" : "text-foreground"
+              }`}
+            />
+          </>
+        )}
         {children}
       </div>
     </section>

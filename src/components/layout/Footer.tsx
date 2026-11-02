@@ -1,3 +1,4 @@
+import { Seal } from "@/components/ui/Seal";
 import { navLinks, resume } from "@/data/resume";
 
 export function Footer() {
@@ -6,9 +7,12 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-24">
         <div className="grid gap-12 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-6">
-            <h2 className="text-3xl font-semibold leading-[0.95] tracking-[-0.02em] text-foreground md:text-4xl lg:text-5xl">
-              {resume.name}
-            </h2>
+            <div className="flex items-end gap-4">
+              <h2 className="text-3xl font-semibold leading-[0.95] tracking-[-0.02em] text-foreground md:text-4xl lg:text-5xl">
+                {resume.name}
+              </h2>
+              <Seal delay={0.3} className="h-10 w-10 md:h-12 md:w-12" />
+            </div>
             <p className="mt-6 font-mono-label text-muted">
               © {new Date().getFullYear()} {resume.name}. All rights reserved.
             </p>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { navLinks, resume } from "@/data/resume";
 
@@ -8,7 +9,8 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const [mobileOpen, setMobileOpen] = useState(false);
-  const onHero = activeSection === "hero";
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 30, mass: 0.3 });
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80);
@@ -39,25 +41,27 @@ export function Navbar() {
     return () => observers.forEach((observer) => observer.disconnect());
   }, []);
 
-  const lightNav = onHero && !scrolled && !mobileOpen;
-
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled || mobileOpen
           ? "border-b border-border bg-background/90 backdrop-blur-md"
-          : "on-dark bg-transparent"
+          : "bg-transparent"
       }`}
     >
+      {/* Reading progress, painted as a thin ink line */}
+      <motion.div
+        aria-hidden
+        style={{ scaleX: progress }}
+        className="absolute inset-x-0 bottom-[-1px] h-[2px] origin-left bg-foreground"
+      />
       <nav
         aria-label="Primary"
         className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:px-10"
       >
         <a
           href="#hero"
-          className={`font-mono-label transition-colors ${
-            lightNav ? "text-white hover:text-white/70" : "text-foreground hover:text-muted"
-          }`}
+          className="font-mono-label text-foreground transition-colors hover:text-muted"
         >
           {resume.name}
         </a>
@@ -71,13 +75,7 @@ export function Navbar() {
                   href={link.href}
                   aria-current={isActive ? "true" : undefined}
                   className={`font-mono-label transition-colors ${
-                    lightNav
-                      ? isActive
-                        ? "text-white"
-                        : "text-white/70 hover:text-white"
-                      : isActive
-                        ? "text-foreground"
-                        : "text-muted hover:text-foreground"
+                    isActive ? "text-foreground" : "text-muted hover:text-foreground"
                   }`}
                 >
                   {link.label}
@@ -90,11 +88,7 @@ export function Navbar() {
         <div className="flex items-center gap-4">
           <a
             href="#contact"
-            className={`hidden rounded-full px-5 py-2.5 font-mono-label transition-all md:inline-flex ${
-              lightNav
-                ? "bg-white text-surface-dark hover:bg-white/90"
-                : "bg-surface-dark text-white hover:bg-foreground/85"
-            }`}
+            className="hidden rounded-full bg-surface-dark px-5 py-2.5 font-mono-label text-white transition-all hover:bg-foreground/85 md:inline-flex"
           >
             Get in Touch
           </a>
@@ -102,9 +96,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => setMobileOpen((open) => !open)}
-            className={`font-mono-label lg:hidden ${
-              lightNav ? "text-white" : "text-foreground"
-            }`}
+            className="font-mono-label text-foreground lg:hidden"
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
