@@ -26,12 +26,12 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       <InkReveal
         delay={index * 0.15}
         origin={index % 2 === 0 ? "25% 75%" : "75% 30%"}
-        className="on-dark relative aspect-square overflow-hidden bg-surface-dark"
+        className="on-dark relative aspect-[4/3] overflow-hidden bg-surface-dark"
       >
         {imgError ? (
-          <div className="flex h-full w-full flex-col justify-between p-6 text-white/70">
+          <div className="flex h-full w-full flex-col justify-between p-5 text-white/70">
             <span className="font-mono-label text-white/40">{number}</span>
-            <span className="text-4xl font-semibold tracking-tight text-white/90">
+            <span className="text-2xl font-semibold tracking-tight text-white/90">
               {project.title}
             </span>
           </div>
@@ -42,19 +42,19 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             fill
             onError={() => setImgError(true)}
             className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.05]"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 640px"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
           />
         )}
       </InkReveal>
-      <div className="flex flex-1 flex-col border-b border-border bg-surface px-5 py-6">
+      <div className="flex flex-1 flex-col border-b border-border bg-surface px-4 py-5">
         <p className="mb-2 font-mono-label text-muted-light">{number}</p>
-        <h3 className="mb-3 text-lg font-semibold tracking-tight text-foreground md:text-xl">
+        <h3 className="mb-2 text-base font-semibold tracking-tight text-foreground md:text-lg">
           {project.title}
         </h3>
-        <p className="mb-4 text-sm leading-relaxed text-muted md:text-base">
+        <p className="mb-3 text-sm leading-relaxed text-muted">
           {project.description}
         </p>
-        <p className="mb-5 font-mono-label text-muted-light">
+        <p className="mb-4 font-mono-label text-muted-light">
           {project.tags.join(" · ")}
         </p>
         {(project.githubUrl || project.liveUrl) && (

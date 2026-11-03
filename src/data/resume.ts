@@ -40,7 +40,7 @@ export const resume: Resume = {
   title: "AI Engineer",
   tagline: "Building thoughtful AI solutions with clean code and clear design.",
   about:
-    "I'm an AI engineer passionate about creating useful, well-crafted AI solutions. I enjoy working across the stack — from designing intuitive interfaces to building reliable backends. I'm always learning and looking for opportunities to solve meaningful problems.",
+    "I'm an AI engineer passionate about creating useful, well-crafted AI solutions.",
   experience: [
     {
       company: "Beaver Works Summer Institute @ MIT",

@@ -14,7 +14,7 @@ export function Projects() {
         whileInView="visible"
         viewport={viewportOnce}
         variants={staggerContainer}
-        className="grid gap-6 sm:grid-cols-2 lg:gap-8"
+        className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6"
       >
         {projects.map((project, index) => (
           <ProjectCard key={project.title} project={project} index={index} />
